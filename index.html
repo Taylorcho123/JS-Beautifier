@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>JS Beautifier</title>
+      <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
+      <style>
+         body {
+         font-family: 'Source Code Pro', monospace;
+         margin: 0;
+         padding: 0;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         min-height: 100vh;
+         background-color: #212121;
+         color: #ffffff;
+         }
+         h1 {
+         margin-bottom: 20px;
+         text-transform: uppercase;
+         }
+         .container {
+         display: flex;
+         flex-direction: row;
+         justify-content: center;
+         width: 100%;
+         max-width: calc(100% - 40px);
+         box-sizing: border-box;
+         }
+         .column {
+         flex: 1;
+         padding: 20px;
+         }
+         textarea {
+         width: 100%;
+         min-height: 500px;
+         padding: 10px;
+         margin-bottom: 10px;
+         border-radius: 5px;
+         border: 1px solid #444;
+         background-color: #333;
+         font-family: 'Source Code Pro', monospace;
+         font-size: 14px;
+         color: #f0f0f0;
+         resize: none;
+         tab-size: 4;
+         overflow-wrap: break-word;
+         box-sizing: border-box;
+         }
+         button {
+         padding: 10px 20px;
+         font-size: 16px;
+         border: none;
+         border-radius: 5px;
+         background-color: #4CAF50;
+         color: white;
+         cursor: pointer;
+         transition: all 0.3s;
+         }
+         button:hover {
+         background-color: #45a049;
+         }
+      </style>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"></script>
+   </head>
+   <body>
+      <h1>JavaScript Beautifier</h1>
+      <div class="container">
+         <div class="column">
+            <h2>Input Code:</h2>
+            <textarea id="inputCode" placeholder="Paste your JavaScript code here..."></textarea>
+            <button onclick="beautifyCode()">Beautify Code</button>
+         </div>
+         <div class="column">
+            <h2>Beautified Code:</h2>
+            <textarea id="outputCode" readonly></textarea>
+         </div>
+      </div>
+      <script>
+         function beautifyCode() {
+             const inputCode = document.getElementById("inputCode");
+             const outputCode = document.getElementById("outputCode");
+         
+             if (inputCode.value.trim() === "") {
+                 alert("Please enter your JavaScript code.");
+                 return;
+             }
+         
+             try {
+                
+         
+         const beautifiedCode = js_beautify(inputCode.value, {
+         indent_size: 4,
+         space_in_empty_paren: true,
+         });
+         outputCode.value = beautifiedCode;
+         } catch (error) {
+         alert("Invalid JavaScript code.");
+         }
+         }
+      </script>
+   </body>
+</html>
